@@ -1,9 +1,14 @@
 module KataFunctions
   def group_anagrams(input_array)
-    output = []
+    output = {}
     input_array.each do |string|
-      output << [string]
+      sorted_string = string.chars.sort.join
+      if output.keys.include? sorted_string
+        output[sorted_string] << string
+      else
+        output[sorted_string] = [string]
+      end
     end
-    output
+    output.values
   end
 end
